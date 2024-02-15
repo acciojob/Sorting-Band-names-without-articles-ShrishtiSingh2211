@@ -2,7 +2,11 @@
 function strip(bandName) {
   return bandName.replace(/^(a |the |an )/i, '').trim();
 }
-let sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
-let bandsList = document.querySelector('#bands');
-let bandItems = sortedBands.map(band => `<li>${band}</li>`);
-bandsList.innerHTML = bandItems.join('');
+let sortedArray = array.sort((a, b) => removeArticles(a).localeCompare(removeArticles(b)));
+
+let ul = document.getElementById('band');
+for(let i = 0; i < sortedArray.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = sortedArray[i];
+    ul.appendChild(li);
+}
